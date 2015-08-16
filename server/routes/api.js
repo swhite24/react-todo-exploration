@@ -34,7 +34,7 @@ export function create(req, res) {
  * Update todo
  */
 export function update(req, res) {
-  var id = req.params.id;
+  let id = req.params.id;
 
   Todo.findById(id, (err, todo) => {
     if (err) return res.status(500).send(err);

@@ -14,7 +14,7 @@ const routes = function(app) {
   });
 
   // Create api router
-  var router = express.Router();
+  let router = express.Router();
   router.get('/', list);
   router.post('/', create);
   router.put('/:id', update);

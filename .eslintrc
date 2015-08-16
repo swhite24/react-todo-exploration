@@ -5,19 +5,22 @@
     "quotes": [ 2, "single" ],
     "linebreak-style": [ 2, "unix" ],
     "semi": [ 2, "always" ],
-    "no-console": [ 0 ]
+    "no-console": [ 0 ],
+    "react/jsx-uses-vars": [ 2 ]
   },
   "env": {
     "es6": true,
     "browser": true,
-    "node": true
+    "node": true,
+    "mocha": true
   },
   "extends": "eslint:recommended",
   "ecmaFeatures": {
     "jsx": true,
     "experimentalObjectRestSpread": true,
     "ecmaFeatures": {
-      "modules": true
+      "modules": true,
+      "jsx": true
     }
   },
   "plugins": [ "react" ]
