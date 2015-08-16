@@ -10,9 +10,9 @@ module.exports = {
     ]
   },
   output: {
-    publicPath: 'http://localhost:3001/js',
+    publicPath: 'http://localhost:3001/public/js',
     filename: '[name].js',
-    path: __dirname + '/js'
+    path: __dirname + '/public/js'
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),

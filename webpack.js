@@ -7,8 +7,6 @@ var WebpackDevServer = require('webpack-dev-server');
 var webpack = require('webpack');
 var config = require('./webpack.config');
 
-console.log('config: ', config.output.publicPath);
-
 var server = new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
   hot: true,

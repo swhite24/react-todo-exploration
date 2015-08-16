@@ -1,9 +1,8 @@
 /**
- * client/app.js
+ * client/js/app.js
  * Entry point into client app
  */
 
-import React from 'react';
-import HelloWorld from './components/hello';
+import Router from './router';
 
-React.render(<HelloWorld />, document.getElementById('react-app'));
+Router(document.getElementById('react-app'));

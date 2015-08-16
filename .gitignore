@@ -34,3 +34,4 @@ public/dist
 .sass-cache
 .env
 retval
+public/js
