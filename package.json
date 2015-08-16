@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node-dev entry"
+    "start-dev": "node webpack & node-dev entry",
+    "start": "node entry"
   },
   "dependencies": {
     "alt": "^0.17.1",
