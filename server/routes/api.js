@@ -47,3 +47,35 @@ export function update(req, res) {
     });
   });
 }
+
+/**
+ * toggle
+ * Toggles todo completion status
+ */
+export function toggle(req, res) {
+  let id = req.params.id;
+
+  Todo.findById(id, (err, todo) => {
+    if (err) return res.status(500).send(err);
+    if (!todo) return res.status(404).send({ message: 'Todo not found.' });
+
+    todo.complete = !todo.complete;
+    todo.save((err, todo) => {
+      if (err) return res.status(500).send(err);
+      res.status(200).send(todo);
+    });
+  });
+}
+
+/**
+ * remove
+ * Removes existing todo
+ */
+export function remove(req, res) {
+  let id = req.params.id;
+
+  Todo.findByIdAndRemove(id, (err) => {
+    if (err) return res.status(500).send(err);
+    res.status(200).end();
+  });
+}

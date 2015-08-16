@@ -4,36 +4,60 @@
  */
 
 import React from 'react';
+import BaseComponent from '../util/BaseComponent';
 import TodoStore from '../stores/TodoStore';
 import TodoActions from '../actions/TodoActions';
+import TodoItem from './TodoItem';
 
-export default class TodoList extends React.Component {
+export default class TodoList extends BaseComponent {
 
   constructor(props) {
     super(props);
     this.state = TodoStore.getState();
 
-    // Create _onChange instance method. Arrow function used for scope
-    // when listen / unlisten on store.
-    this._onChange = (state) => {
-      this.setState(state);
-    };
+    // Bind callback methods
+    this._bind('_onChange');
   }
 
+  /**
+   * Register listener for store change
+   */
   componentWillMount() {
     TodoStore.listen(this._onChange);
   }
 
+  /**
+   * Bootstrap data if not present
+   */
   componentDidMount() {
     if (!this.state.todos.length) TodoActions.fetchTodos();
   }
 
+  /**
+   * Remove listener for store change
+   */
   componentWillUnmount() {
     TodoStore.unlisten(this._onChange);
   }
 
+  /**
+   * Update date on store change
+   */
+  _onChange(state) {
+    this.setState(state);
+  }
+
   render() {
-    return <h1>TodoList</h1>;
+    // Build todo items
+    let items = this.state.todos.map((todo) => {
+      return <TodoItem key={todo._id} todo={todo} />;
+    });
+
+    return (
+      <ul className="collection">
+        {items}
+      </ul>
+    );
   }
 
 }

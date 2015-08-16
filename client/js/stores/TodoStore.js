@@ -12,7 +12,6 @@ class TodoStore {
   constructor() {
     // Setup state
     this.todos = [];
-    this.err = null;
     this.loading = false;
 
     // Bind to todo actions
@@ -22,33 +21,25 @@ class TodoStore {
   fetchTodos() {
     this.loading = true;
     this.todos = [];
-    this.err = null;
   }
 
   receiveTodos(todos) {
     this.loading = false;
-    this.err = null;
     this.todos = todos;
   }
 
-  receiveTodosError(err) {
-    this.err = err;
-    this.loading = false;
-    this.todos = [];
-  }
-
-  addTodo(todo) {
+  todoAdded(todo) {
     this.todos.push(todo);
   }
 
-  removeTodo(id) {
-    let idx = _.findIndex(this.todos, { _id: id });
-    this.todos.splice(idx, 1);
+  todoUpdated(todo) {
+    let idx = _.findIndex(this.todos, { _id: todo._id });
+    this.todos[idx] = todo;
   }
 
-  finishTodo(id) {
+  todoRemoved(id) {
     let idx = _.findIndex(this.todos, { _id: id });
-    this.todos[idx].complete = true;
+    this.todos.splice(idx, 1);
   }
 
 }

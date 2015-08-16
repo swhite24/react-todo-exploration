@@ -4,7 +4,7 @@
  */
 
 import express from 'express';
-import {list, create, update} from './api';
+import {list, create, update, toggle, remove} from './api';
 
 const routes = function(app) {
 
@@ -18,6 +18,8 @@ const routes = function(app) {
   router.get('/', list);
   router.post('/', create);
   router.put('/:id', update);
+  router.post('/:id/toggle', toggle);
+  router.delete('/:id', remove);
 
   // Use api router
   app.use('/api/todos', router);
