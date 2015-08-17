@@ -50,12 +50,11 @@ export default class TodoForm extends BaseComponent {
         <div className='col s12 input-field'>
           <input
             type='text'
-            placeholder='New Todo'
-            autoFocus={true}
             value={this.state.content}
             onChange={this._onChange}
             onKeyDown={this._onKeyDown}
           />
+          <label>New Todo</label>
         </div>
       </div>
     );
