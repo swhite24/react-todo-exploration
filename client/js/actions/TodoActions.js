@@ -46,8 +46,8 @@ class TodoActions {
       .set('Accept', 'application/json')
       .send(todo)
       .end((err, res) => {
-        if (err) return this.actions.addTodoError(err);
-        this.actions.addTodo(res.body);
+        if (err) return this.actions.todoAddedError(err);
+        this.actions.todoAdded(res.body);
       });
   }
 
@@ -61,8 +61,8 @@ class TodoActions {
       .post('/api/todos/' + id + '/toggle')
       .set('Accept', 'application/json')
       .end((err, res) => {
-        if (err) return this.actions.updateTodoError(err);
-        this.actions.updateTodo(res.body);
+        if (err) return this.actions.todoUpdatedError(err);
+        this.actions.todoUpdated(res.body);
       });
   }
 
@@ -76,7 +76,7 @@ class TodoActions {
       .del('/api/todos/' + id)
       .set('Accept', 'application/json')
       .end((err, res) => {
-        if (err) return this.actions.removeTodoError(err);
+        if (err) return this.actions.todoRemovedError(err);
         this.actions.todoRemoved(id);
       });
   }
