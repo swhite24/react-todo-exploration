@@ -35,11 +35,11 @@ export default class TodoItem extends BaseComponent {
     return (
       <li key={todo._id} className='collection-item todo'>
         <div className='row'>
-          <div className='col s2'>
+          <div className='col s9'>
             <input type='checkbox' id={todo._id} onChange={this._onToggle} checked={this.props.todo.complete}/>
-            <label htmlFor={todo._id}>Complete</label>
+            <label htmlFor={todo._id}>{todo.content}</label>
+
           </div>
-          <div className='col s7'>{todo.content}</div>
           <div className='col s3 right-align'>
             <button className='btn-floating waves-effect red' onClick={this._onRemove}>-</button>
           </div>

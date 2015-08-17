@@ -54,7 +54,7 @@ export default class TodoList extends BaseComponent {
     });
 
     return (
-      <ul className="collection">
+      <ul className="collection z-depth-2">
         {items}
       </ul>
     );
