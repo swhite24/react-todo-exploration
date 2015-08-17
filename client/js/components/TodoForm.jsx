@@ -53,7 +53,7 @@ export default class TodoForm extends BaseComponent {
             value={this.state.content}
             onChange={this._onChange}
             onKeyDown={this._onKeyDown}
-          />
+            />
           <label>New Todo</label>
         </div>
       </div>
