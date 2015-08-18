@@ -14,6 +14,7 @@ module.exports = {
     filename: '[name].js',
     path: __dirname + '/public/js'
   },
+  devtool: 'sourcemap',
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()

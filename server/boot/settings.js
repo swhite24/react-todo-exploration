@@ -6,6 +6,7 @@
 import path from 'path';
 import express from 'express';
 import bodyparser from 'body-parser';
+import morgan from 'morgan';
 
 const settings = function(app) {
 
@@ -13,9 +14,11 @@ const settings = function(app) {
   app.set('env', process.env.NODE_ENV);
 
   // Setup views
-  app.set('views', path.resolve(__dirname, '..', 'server', 'views'));
+  app.set('views', path.resolve(__dirname, '..', 'views'));
   app.set('view engine', 'jade');
-  app.use(express.static(path.resolve(__dirname, '..', 'public')));
+  app.use(express.static(path.resolve(__dirname, '..', '..', 'public')));
+
+  app.use(morgan('dev'));
 
   // Setup body parser
   app.use(bodyparser.json());

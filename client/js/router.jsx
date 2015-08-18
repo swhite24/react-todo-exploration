@@ -6,7 +6,9 @@
 import React from 'react';
 import Router from 'react-router';
 import App from './pages/App';
-import TodoList from './components/TodoList';
+import Todos from './pages/Todos';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 const Route = Router.Route;
 const DefaultRoute = Router.DefaultRoute;
@@ -14,7 +16,9 @@ const DefaultRoute = Router.DefaultRoute;
 
 const routes = (
   <Route handler={App} path='/'>
-    <DefaultRoute name="list" handler={TodoList} />
+    <DefaultRoute name='list' handler={Todos} />
+    <Route name='login' handler={Login} />
+    <Route name='register' handler={Register} />
   </Route>
 );
 

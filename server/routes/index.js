@@ -4,7 +4,7 @@
  */
 
 import express from 'express';
-import {list, create, update, toggle, remove} from './api';
+import * as todo from './todo';
 
 const routes = function(app) {
 
@@ -15,11 +15,15 @@ const routes = function(app) {
 
   // Create api router
   let router = express.Router();
-  router.get('/', list);
-  router.post('/', create);
-  router.put('/:id', update);
-  router.post('/:id/toggle', toggle);
-  router.delete('/:id', remove);
+
+  // Todo routes
+  router.get('/', todo.list);
+  router.post('/', todo.create);
+  router.put('/:id', todo.update);
+  router.post('/:id/toggle', todo.toggle);
+  router.delete('/:id', todo.remove);
+
+  // User routes
 
   // Use api router
   app.use('/api/todos', router);
