@@ -7,6 +7,7 @@ import path from 'path';
 import express from 'express';
 import bodyparser from 'body-parser';
 import morgan from 'morgan';
+import compression from 'compression';
 
 const settings = function(app) {
 
@@ -23,6 +24,7 @@ const settings = function(app) {
   // Setup body parser
   app.use(bodyparser.json());
   app.use(bodyparser.urlencoded({ extended: true }));
+  app.use(compression());
 
   app.disable('x-powered-by');
 };

@@ -7,6 +7,8 @@ import React from 'react/addons';
 import ReactMixin from 'react-mixin';
 import BaseComponent from '../util/BaseComponent';
 
+import AuthActions from '../actions/AuthActions';
+
 export default class LoginForm extends BaseComponent {
 
   constructor(options) {
@@ -21,8 +23,7 @@ export default class LoginForm extends BaseComponent {
 
   _onSubmit(evnt) {
     evnt.preventDefault();
-
-    console.log('submitting: ', this.state);
+    AuthActions.login(this.state.email, this.state.password);
   }
 
   render() {
@@ -31,7 +32,6 @@ export default class LoginForm extends BaseComponent {
         <div className='row'>
           <div className='input-field col s12'>
             <input
-              className='validate'
               type='email'
               required
               valueLink={this.linkState('email')}
@@ -42,7 +42,6 @@ export default class LoginForm extends BaseComponent {
         <div className='row'>
           <div className='input-field col s12'>
             <input
-              className='validate'
               type='password'
               required
               valueLink={this.linkState('password')}
@@ -51,7 +50,7 @@ export default class LoginForm extends BaseComponent {
           </div>
         </div>
         <div className='row'>
-          <button type='submit' className='btn waves-effect' onClick={this._onSubmit}>Submit</button>
+          <button type='submit' className='btn waves-effect right' onClick={this._onSubmit}>Submit</button>
         </div>
       </form>
     );

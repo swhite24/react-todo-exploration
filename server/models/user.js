@@ -15,7 +15,7 @@ const UserSchema = new mongoose.Schema({
   password: { type: String, require: true }
 });
 
-UserSchema.pre('save', (next) => {
+UserSchema.pre('save', function(next) {
   if (!this.isModified('password')) return next();
 
   bcrypt.genSalt(SALT, (err, salt) => {

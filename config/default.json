@@ -1,5 +1,9 @@
 {
   "db": {
     "connect": "mongodb://localhost/dev-react-todo"
+  },
+  "jwt": {
+    "secret": "98423ad857fd27df5ac971138d691b07bf825f98",
+    "exp": 1440
   }
 }

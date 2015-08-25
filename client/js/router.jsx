@@ -9,10 +9,10 @@ import App from './pages/App';
 import Todos from './pages/Todos';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import RouterContainer from './util/RouterContainer';
 
 const Route = Router.Route;
 const DefaultRoute = Router.DefaultRoute;
-// const NotFoundRoute = RouterNotFound.Route;
 
 const routes = (
   <Route handler={App} path='/'>
@@ -22,8 +22,12 @@ const routes = (
   </Route>
 );
 
+// Create router instance
+let router = Router.create({ routes });
+RouterContainer.set(router);
+
 export default (el) => {
-  Router.run(routes, (Handler, state) => {
+  router.run((Handler, state) => {
     let params = state.params;
     React.render(<Handler params={params} />, el);
   });
