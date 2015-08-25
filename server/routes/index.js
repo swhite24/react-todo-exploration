@@ -4,10 +4,14 @@
  */
 
 import express from 'express';
+import expressJwt from 'express-jwt';
+import config from 'config';
 import * as todo from './todo';
 import * as auth from './user';
 
-const routes = function(app) {
+const jwtConfig = config.get('jwt');
+
+export default (app) => {
 
   // Create frontend route
   app.get('/', (req, res) => {
@@ -16,20 +20,22 @@ const routes = function(app) {
 
   // Create api router
   let router = express.Router();
+  let todoRouter = express.Router();
 
   // Todo routes
-  router.get('/todos/?', todo.list);
-  router.post('/todos/?', todo.create);
-  router.put('/todos/:id', todo.update);
-  router.post('/todos/:id/toggle', todo.toggle);
-  router.delete('/todos/:id', todo.remove);
+  todoRouter.get('/todos/?', todo.list);
+  todoRouter.post('/todos/?', todo.create);
+  todoRouter.put('/todos/:id', todo.update);
+  todoRouter.post('/todos/:id/toggle', todo.toggle);
+  todoRouter.delete('/todos/:id', todo.remove);
 
   // User routes
   router.post('/login', auth.login);
   router.post('/register', auth.register);
 
+  // Add todo routes to router
+  router.use(expressJwt({ secret: jwtConfig.secret }), todoRouter);
+
   // Use api router
   app.use('/api', router);
 };
-
-export default routes;

@@ -5,6 +5,7 @@
 
 import alt from '../alt';
 import request from 'superagent';
+import Api from '../util/Api';
 
 class TodoActions {
   constructor() {
@@ -22,14 +23,10 @@ class TodoActions {
     // Finish current
     this.dispatch();
 
-    // Request data
-    request
-      .get('/api/todos')
-      .set('Accept', 'application/json')
-      .end((err, res) => {
-        if (err) return this.actions.receiveTodosError(err);
-        this.actions.receiveTodos(res.body);
-      });
+    Api.fetchTodos((err, res) => {
+      if (err) return this.actions.receiveTodosError(err);
+      this.actions.receiveTodos(res.body);
+    });
   }
 
   /**
@@ -39,16 +36,10 @@ class TodoActions {
     // Finish current
     this.dispatch();
 
-    // Create new todo
-    request
-      .post('/api/todos')
-      .set('Content-Type', 'application/json')
-      .set('Accept', 'application/json')
-      .send(todo)
-      .end((err, res) => {
-        if (err) return this.actions.todoAddedError(err);
-        this.actions.todoAdded(res.body);
-      });
+    Api.createTodo(todo, (err, res) => {
+      if (err) return this.actions.todoAddedError(err);
+      this.actions.todoAdded(res.body);
+    });
   }
 
   /**
@@ -57,13 +48,10 @@ class TodoActions {
   toggleTodo(id) {
     this.dispatch();
 
-    request
-      .post('/api/todos/' + id + '/toggle')
-      .set('Accept', 'application/json')
-      .end((err, res) => {
-        if (err) return this.actions.todoUpdatedError(err);
-        this.actions.todoUpdated(res.body);
-      });
+    Api.toggleTodo(id, (err, res) => {
+      if (err) return this.actions.todoUpdatedError(err);
+      this.actions.todoUpdated(res.body);
+    });
   }
 
   /**
@@ -72,13 +60,10 @@ class TodoActions {
   removeTodo(id) {
     this.dispatch();
 
-    request
-      .del('/api/todos/' + id)
-      .set('Accept', 'application/json')
-      .end((err, res) => {
-        if (err) return this.actions.todoRemovedError(err);
-        this.actions.todoRemoved(id);
-      });
+    Api.removeTodo(id, (err, res) => {
+      if (err) return this.actions.todoRemovedError(err);
+      this.actions.todoRemoved(id);
+    });
   }
 }
 

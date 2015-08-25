@@ -4,7 +4,7 @@
  */
 
 import alt from '../alt';
-import Api from '../util/API';
+import Api from '../util/Api';
 
 class AuthActions {
   constructor() {

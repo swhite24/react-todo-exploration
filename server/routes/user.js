@@ -15,7 +15,6 @@ export function register(req, res) {
   user.save((err, user) => {
     if (err) return res.status(409).send(err);
 
-    // TODO: jwt
     res.status(200).send(getToken(user));
   });
 }
@@ -32,7 +31,6 @@ export function login(req, res) {
       if (err) return res.status(500).send(err);
       if (!valid) return res.status(404).send({ message: 'User not found' });
 
-      // TODO: jwt
       res.status(200).send(getToken(user));
     });
   });
