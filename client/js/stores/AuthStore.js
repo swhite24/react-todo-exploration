@@ -35,6 +35,10 @@ class AuthStore {
   registerSuccess(data) {
     this.user = data.user;
     this.token = data.token;
+
+    // Store data
+    localStorage.setItem('token', JSON.stringify(this.token));
+    localStorage.setItem('user', JSON.stringify(this.user));
   }
 
   _autoLogin() {
