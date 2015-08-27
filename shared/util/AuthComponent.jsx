@@ -15,10 +15,11 @@ export default (Component) => {
      * Monitor transition states. If trying to visit auth
      * page, redirect.
      */
-    static willTransitionTo(transition) {
+    static willTransitionTo(transition, params, query, callback) {
       if (!AuthStore.getState().user) {
         transition.redirect('login');
       }
+      callback();
     }
 
     constructor() {

@@ -21,7 +21,7 @@ export default class Header extends BaseComponent {
   /**
    * Listen to auth store changes
    */
-  componentWillMount() {
+  componentDidMount() {
     AuthStore.listen(this._onChange);
   }
 

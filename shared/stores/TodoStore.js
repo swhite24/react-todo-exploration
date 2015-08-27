@@ -44,4 +44,4 @@ class TodoStore {
 
 }
 
-export default alt.createStore(TodoStore);
+export default alt.createStore(TodoStore, 'TodoStore');

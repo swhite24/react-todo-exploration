@@ -5,12 +5,12 @@
 
 import React from 'react';
 import Router from 'react-router';
-import App from '../../shared/pages/App';
-import Todos from '../../shared/pages/Todos';
-import Login from '../../shared/pages/Login';
-import Register from '../../shared/pages/Register';
-import Profile from '../../shared/pages/Profile';
-import RouterContainer from '../../shared/util/RouterContainer';
+import App from './pages/App';
+import Todos from './pages/Todos';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Profile from './pages/Profile';
+import RouterContainer from './util/RouterContainer';
 
 const Route = Router.Route;
 const DefaultRoute = Router.DefaultRoute;
@@ -25,10 +25,12 @@ const routes = (
 );
 
 // Create router instance
-let router = Router.create({
-  routes,
-  location: Router.HistoryLocation
-});
+let router = Router.create({ routes });
 RouterContainer.set(router);
 
-export default router;
+export default (el) => {
+  router.run((Handler, state) => {
+    let params = state.params;
+    React.render(<Handler params={params} />, el);
+  });
+};

@@ -20,16 +20,10 @@ export default class TodoList extends BaseComponent {
   }
 
   /**
-   * Register listener for store change
-   */
-  componentWillMount() {
-    TodoStore.listen(this._onChange);
-  }
-
-  /**
    * Bootstrap data if not present
    */
   componentDidMount() {
+    TodoStore.listen(this._onChange);
     if (!this.state.todos.length) TodoActions.fetchTodos();
   }
 

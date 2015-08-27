@@ -17,7 +17,6 @@ export default class LoginForm extends BaseComponent {
       email: '',
       password: ''
     };
-
     this._bind('_onSubmit');
   }
 
