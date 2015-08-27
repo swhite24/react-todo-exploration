@@ -40,6 +40,14 @@ const settings = function(app) {
     duration: sessionConf.exp
   }));
 
+  // Setup locals
+  app.use((req, res, next) => {
+    res.locals.base = 'http://localhost:3001/public';
+    if (process.env.NODE_ENV === 'production') res.locals.base = '';
+
+    next();
+  });
+
   // Disable x-powered-by header
   app.disable('x-powered-by');
 };

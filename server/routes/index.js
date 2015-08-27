@@ -6,6 +6,7 @@
 import express from 'express';
 import expressJwt from 'express-jwt';
 import config from 'config';
+import _ from 'lodash';
 import * as todo from './todo';
 import * as auth from './user';
 import User from '../models/user';
@@ -49,7 +50,7 @@ export default (app) => {
     let iso = new Iso();
 
     // Bootstrap alt
-    alt.bootstrap(JSON.stringify(res.locals));
+    alt.bootstrap(JSON.stringify(_.pick(res.locals, 'AuthStore', 'TodoStore')));
 
     // Create router
     let router = Router.create({

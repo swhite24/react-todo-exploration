@@ -1,23 +1,18 @@
 
 var webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
-  entry: {
-    main: [
-      'webpack-dev-server/client?http://localhost:3001',
-      'webpack/hot/only-dev-server',
-      './client/js/app'
-    ]
-  },
+  cache: true,
+  context: path.join(__dirname, 'client', 'js'),
+  entry: './app.jsx',
   output: {
-    publicPath: 'http://localhost:3001/public/js',
-    filename: '[name].js',
+    filename: 'main.js',
     path: __dirname + '/public/js'
   },
-  devtool: 'sourcemap',
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin()
   ],
   resolve: {
     extensions: [ '', '.js', '.jsx' ]
@@ -25,11 +20,8 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.jsx?$/,
-      loaders: [ 'react-hot', 'babel?experimental&stage=1' ],
+      loaders: [ 'babel?experimental&stage=1' ],
       exclude: /node_modules|bower_components/
-    }, {
-      test: /\.scss$/,
-      loaders: [ 'style', 'css', 'sass' ]
     }]
   }
 };

@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack.config.js",
     "start-dev": "node webpack & node-dev entry",
     "start": "node entry"
   },
