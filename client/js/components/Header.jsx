@@ -64,6 +64,7 @@ export default class Header extends BaseComponent {
     if (this.state.user) {
       return (
         <ul className='right'>
+          <li><Link to='profile'>Profile</Link></li>
           <li><a href='javascript:void(0)' onClick={this._logout}>Logout</a></li>
         </ul>
       );
