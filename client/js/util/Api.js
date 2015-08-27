@@ -16,6 +16,13 @@ class API {
   }
 
   /**
+   * Logout a user.
+   */
+  logout(cb) {
+    this._genericRequest('post', '/api/logout', cb);
+  }
+
+  /**
    * Register a new user.
    */
   register(user, cb) {
@@ -50,6 +57,9 @@ class API {
     this._authRequest('del', '/api/todos/' + id, cb);
   }
 
+  /**
+   * Perform authenticated request
+   */
   _authRequest(method, url, body, cb) {
     if (typeof body === 'function') {
       cb = body;
@@ -63,6 +73,9 @@ class API {
     chain.end(cb);
   }
 
+  /**
+   * Perform non authenticated request
+   */
   _genericRequest(method, url, body, cb) {
     if (typeof body === 'function') {
       cb = body;
@@ -74,8 +87,6 @@ class API {
     if (body) chain.send(body);
     chain.end(cb);
   }
-
-
 
   /**
    * Generic request abstraction

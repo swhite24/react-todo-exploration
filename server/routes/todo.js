@@ -5,6 +5,7 @@
 
 import _ from 'lodash';
 import Todo from '../models/todo';
+import User from '../models/user';
 
 /**
  * list

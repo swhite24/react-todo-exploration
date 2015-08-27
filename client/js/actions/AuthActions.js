@@ -26,10 +26,16 @@ class AuthActions {
     });
   }
 
+  /**
+   * Logout action
+   */
   logout() {
     this.dispatch();
 
-    setTimeout(() => this.actions.logoutSuccess());
+    Api.logout((err, res) => {
+      if (err) return this.actions.logoutError(err);
+      this.actions.logoutSuccess();
+    });
   }
 
   /**

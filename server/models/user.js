@@ -6,15 +6,19 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 
+// Bcrypt salt factor
 const SALT = 10;
 
+// Define schema
 const UserSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true, trim: true },
   firstName: String,
   lastName: String,
-  password: { type: String, require: true }
+  password: { type: String, require: true },
+  todos: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Todo' }]
 });
 
+// Encrypt password on the way down
 UserSchema.pre('save', function(next) {
   if (!this.isModified('password')) return next();
 
@@ -30,11 +34,29 @@ UserSchema.pre('save', function(next) {
   });
 });
 
-UserSchema.methods.checkPassword = function(candidate, cb) {
+// Attach methods
+UserSchema.methods.checkPassword = checkPassword;
+UserSchema.methods.getTodos = getTodos;
+
+/**
+ * Check password with bcrypt
+ */
+function checkPassword(candidate, cb) {
   bcrypt.compare(candidate, this.password, (err, valid) => {
     if (err) return cb(err);
     cb(null, valid);
   });
-};
+}
 
+/**
+ * Fetch all todos owned by user
+ */
+function getTodos(cb) {
+  this.populate('todos', (err, user) => {
+    if (err) return cb(err);
+    cb(null, user.todos || []);
+  });
+}
+
+// Export model
 export default mongoose.model('User', UserSchema);

@@ -48,6 +48,9 @@ export default class TodoList extends BaseComponent {
   }
 
   render() {
+    // Check if items available
+    if (!this.state.todos.length) return <div></div>;
+
     // Build todo items
     let items = this.state.todos.map((todo) => {
       return <TodoItem key={todo._id} todo={todo} />;

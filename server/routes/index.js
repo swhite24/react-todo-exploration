@@ -32,8 +32,9 @@ export default (app) => {
   // User routes
   router.post('/login', auth.login);
   router.post('/register', auth.register);
+  router.post('/logout', auth.logout);
 
-  // Add todo routes to router
+  // Add todo routes to router, using jwt
   router.use(expressJwt({ secret: jwtConfig.secret }), todoRouter);
 
   // Use api router
