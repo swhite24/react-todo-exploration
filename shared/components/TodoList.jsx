@@ -1,5 +1,5 @@
 /**
- * client/js/components/TodoList.jsx
+ * shared/components/TodoList.jsx
  * Todo list component
  */
 

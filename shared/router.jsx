@@ -1,5 +1,5 @@
 /**
- * client/js/router.jsx
+ * shared/router.jsx
  * Client side routing
  */
 

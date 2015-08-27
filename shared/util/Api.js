@@ -1,5 +1,5 @@
 /**
- * client/js/util/Api.js
+ * shared/util/Api.js
  * Wrapper for Api calls
  */
 

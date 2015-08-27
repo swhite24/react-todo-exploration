@@ -1,5 +1,5 @@
 /**
- * client/js/stores/AuthStore.js
+ * shared/stores/AuthStore.js
  * Store for user state
  */
 

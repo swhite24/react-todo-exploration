@@ -1,5 +1,5 @@
 /**
- * client/js/stores/TodoStore.js
+ * shared/stores/TodoStore.js
  * Alt todo store
  */
 

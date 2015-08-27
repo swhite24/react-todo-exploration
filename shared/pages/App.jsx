@@ -1,5 +1,5 @@
 /**
- * client/js/pages/app.jsx
+ * shared/pages/app.jsx
  * App container
  */
 

@@ -1,5 +1,5 @@
 /**
- * client/js/components/TodoItem.jsx
+ * shared/components/TodoItem.jsx
  * Todo item component
  */
 

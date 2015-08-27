@@ -1,5 +1,5 @@
 /**
- * client/js/util/AuthComponent.jsx
+ * shared/util/AuthComponent.jsx
  * Higher order component for wrapping other components
  * which require a user to be logged in.
  */

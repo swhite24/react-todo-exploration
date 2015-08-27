@@ -1,5 +1,5 @@
 /**
- * client/js/components/Header.jsx
+ * shared/components/Header.jsx
  * App Header
  */
 

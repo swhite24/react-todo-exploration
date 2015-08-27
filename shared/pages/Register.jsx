@@ -1,5 +1,5 @@
 /**
- * client/js/pages/Register.jsx
+ * shared/pages/Register.jsx
  * Register page
  */
 

@@ -1,5 +1,5 @@
 /**
- * client/js/alt.js
+ * shared/alt.js
  * Provides alt instance
  */
 
