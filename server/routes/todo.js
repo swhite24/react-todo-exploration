@@ -5,14 +5,13 @@
 
 import _ from 'lodash';
 import Todo from '../models/todo';
-import User from '../models/user';
 
 /**
  * list
  * List all available todos
  */
 export function list(req, res) {
-  Todo.find({}, (err, todos) => {
+  req.user.getTodos((err, todos) => {
     if (err) return res.status(500).send(err);
     res.status(200).send(todos);
   });
@@ -23,8 +22,7 @@ export function list(req, res) {
  * Create new todo
  */
 export function create(req, res) {
-  var todo = new Todo(req.body);
-  todo.save((err, todo) => {
+  req.user.addTodo(req.body, (err, todo) => {
     if (err) return res.status(500).send(err);
     res.status(200).send(todo);
   });
@@ -36,6 +34,7 @@ export function create(req, res) {
  */
 export function update(req, res) {
   let id = req.params.id;
+  if (!req.user.owns(id)) return res.status(401).send({ message: 'Todo not owned by user'});
 
   Todo.findById(id, (err, todo) => {
     if (err) return res.status(500).send(err);
@@ -55,6 +54,7 @@ export function update(req, res) {
  */
 export function toggle(req, res) {
   let id = req.params.id;
+  if (!req.user.owns(id)) return res.status(401).send({ message: 'Todo not owned by user'});
 
   Todo.findById(id, (err, todo) => {
     if (err) return res.status(500).send(err);
@@ -74,6 +74,7 @@ export function toggle(req, res) {
  */
 export function remove(req, res) {
   let id = req.params.id;
+  if (!req.user.owns(id)) return res.status(401).send({ message: 'Todo not owned by user'});
 
   Todo.findByIdAndRemove(id, (err) => {
     if (err) return res.status(500).send(err);

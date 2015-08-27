@@ -5,6 +5,7 @@
 
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
+import Todo from './todo';
 
 // Bcrypt salt factor
 const SALT = 10;
@@ -37,6 +38,8 @@ UserSchema.pre('save', function(next) {
 // Attach methods
 UserSchema.methods.checkPassword = checkPassword;
 UserSchema.methods.getTodos = getTodos;
+UserSchema.methods.addTodo = addTodo;
+UserSchema.methods.owns = owns;
 
 /**
  * Check password with bcrypt
@@ -56,6 +59,28 @@ function getTodos(cb) {
     if (err) return cb(err);
     cb(null, user.todos || []);
   });
+}
+
+/**
+ * Add new todo for user
+ */
+function addTodo(todo, cb) {
+  todo = new Todo(todo);
+  todo.save((err, todo) => {
+    if (err) return cb(err);
+    this.todos.push(todo);
+    this.save((err, user) => {
+      if (err) return cb(err);
+      cb(null, todo);
+    });
+  });
+}
+
+/**
+ * Check if user owns todo
+ */
+function owns(id) {
+  return this.todos.some((todo) => todo.equals(id));
 }
 
 // Export model

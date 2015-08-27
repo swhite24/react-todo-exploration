@@ -8,6 +8,7 @@ import expressJwt from 'express-jwt';
 import config from 'config';
 import * as todo from './todo';
 import * as auth from './user';
+import User from '../models/user';
 
 const jwtConfig = config.get('jwt');
 
@@ -35,8 +36,15 @@ export default (app) => {
   router.post('/logout', auth.logout);
 
   // Add todo routes to router, using jwt
-  router.use(expressJwt({ secret: jwtConfig.secret }), todoRouter);
+  router.use(expressJwt({ secret: jwtConfig.secret }), loadUser, todoRouter);
 
   // Use api router
   app.use('/api', router);
 };
+
+function loadUser(req, res, next) {
+  User.findById(req.user._id, (err, user) => {
+    if (user) req.user = user;
+    next();
+  });
+}
