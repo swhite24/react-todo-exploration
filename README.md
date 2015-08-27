@@ -11,6 +11,13 @@ $ npm install
 $ npm run start-dev
 ```
 
+## Production-like
+
+```shell
+$ npm run build
+$ npm run start-prod
+```
+
 ## license
 
 See [LICENSE](LICENSE).

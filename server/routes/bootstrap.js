@@ -27,7 +27,11 @@ router.get(/\/(profile)?\/?$/, (req, res, next) => {
 
   // Find user / populate todos
   User.findOne({ _id: user._id }).populate('todos').exec((err, user) => {
-    if (err) return next();
+    if (err || !user) {
+      // Bogus token
+      delete req.session.token;
+      return next();
+    }
 
     // Provide data to bootstrap TodoStore
     res.locals.TodoStore = { todos: user.todos };
