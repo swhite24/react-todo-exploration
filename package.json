@@ -9,6 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.js",
     "start-dev": "node webpack & node-dev entry",
+    "start-prod": "NODE_ENV=production node entry",
     "start": "node entry"
   },
   "dependencies": {
