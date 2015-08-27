@@ -15,6 +15,7 @@ import Router from 'react-router';
 import routes from '../../shared/routes';
 import alt from '../../shared/alt';
 import Iso from 'iso';
+import bootstrap from './bootstrap';
 
 const jwtConfig = config.get('jwt');
 
@@ -43,15 +44,12 @@ export default (app) => {
   app.use('/api', router);
 
   // Create frontend route
-  app.get('/*', (req, res) => {
-    console.log('user: ', req.user);
+  app.get('/*', bootstrap, (req, res) => {
     // Create iso instance
     let iso = new Iso();
-    let data = {};
 
-    // Bootstrap AuthStore if user logged in
-    if (req.session.token) data.AuthStore = { token: req.session.token.token };
-    alt.bootstrap(JSON.stringify(data));
+    // Bootstrap alt
+    alt.bootstrap(JSON.stringify(res.locals));
 
     // Create router
     let router = Router.create({
