@@ -8,7 +8,7 @@ Using [webpack](http://webpack.github.io/) as a build system, with hot reloading
 
 ```shell
 $ npm install
-$ npm start-dev
+$ npm run start-dev
 ```
 
 ## license

@@ -1,5 +1,13 @@
 {
   "db": {
     "connect": "mongodb://localhost/dev-react-todo"
+  },
+  "jwt": {
+    "secret": "98423ad857fd27df5ac971138d691b07bf825f98",
+    "exp": 1440
+  },
+  "session": {
+    "secret": "3107368cc8abc0bea711ccebbf3aa50c127793d7",
+    "exp": 8.64e7
   }
 }

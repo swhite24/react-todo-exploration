@@ -6,8 +6,8 @@
 import express from 'express';
 import http from 'http';
 
-import settings from '../boot/settings';
-import db from '../boot/db';
+import settings from './boot/settings';
+import db from './boot/db';
 import routes from './routes';
 
 // Create app
