@@ -5,24 +5,8 @@
 
 import React from 'react';
 import Router from 'react-router';
-import App from '../../shared/pages/App';
-import Todos from '../../shared/pages/Todos';
-import Login from '../../shared/pages/Login';
-import Register from '../../shared/pages/Register';
-import Profile from '../../shared/pages/Profile';
+import routes from '../../shared/routes';
 import RouterContainer from '../../shared/util/RouterContainer';
-
-const Route = Router.Route;
-const DefaultRoute = Router.DefaultRoute;
-
-const routes = (
-  <Route handler={App} path='/'>
-    <DefaultRoute name='list' handler={Todos} />
-    <Route name='login' handler={Login} />
-    <Route name='register' handler={Register} />
-    <Route name='profile' handler={Profile} />
-  </Route>
-);
 
 // Create router instance
 let router = Router.create({

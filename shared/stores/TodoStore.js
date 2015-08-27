@@ -6,6 +6,7 @@
 import alt from '../alt';
 import _ from 'lodash';
 import TodoActions from '../actions/TodoActions';
+import AuthActions from '../actions/AuthActions';
 
 class TodoStore {
 
@@ -16,6 +17,7 @@ class TodoStore {
 
     // Bind to todo actions
     this.bindActions(TodoActions);
+    this.bindActions(AuthActions);
   }
 
   fetchTodos() {
@@ -40,6 +42,10 @@ class TodoStore {
   todoRemoved(id) {
     let idx = _.findIndex(this.todos, { _id: id });
     this.todos.splice(idx, 1);
+  }
+
+  logoutSuccess() {
+    this.todos = [];
   }
 
 }
