@@ -1,5 +1,5 @@
 /**
- * client/js/actions/AuthActions.js
+ * shared/actions/AuthActions.js
  * Actions for user user state
  */
 

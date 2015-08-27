@@ -1,5 +1,5 @@
 /**
- * client/js/actions/TodoActions.js
+ * shared/actions/TodoActions.js
  * Actions for manipulating Todos
  */
 

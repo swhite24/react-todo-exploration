@@ -1,5 +1,5 @@
 /**
- * client/js/pages/Profile.jsx
+ * shared/pages/Profile.jsx
  * User profile page
  */
 

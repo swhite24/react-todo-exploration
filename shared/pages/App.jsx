@@ -1,5 +1,5 @@
 /**
- * client/js/pages/app.jsx
+ * shared/pages/app.jsx
  * App container
  */
 
@@ -42,9 +42,11 @@ export default class App extends BaseComponent {
   }
 
   _onChange(state) {
-    console.log('changed: ', state);
     let router = RouterContainer.get();
-    if (state.user) router.transitionTo('list');
-    else router.transitionTo('login');
+
+    setTimeout(() => {
+      if (state.user) router.transitionTo('list');
+      else router.transitionTo('login');
+    });
   }
 }

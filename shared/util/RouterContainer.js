@@ -1,5 +1,5 @@
 /**
- * client/js/util/RouterContainer.js
+ * shared/util/RouterContainer.js
  * Stores router instance for use in components
  */
 

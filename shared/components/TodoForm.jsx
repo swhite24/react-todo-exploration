@@ -1,5 +1,5 @@
 /**
- * client/js/components/TodoForm.jsx
+ * shared/components/TodoForm.jsx
  * New todo form
  */
 

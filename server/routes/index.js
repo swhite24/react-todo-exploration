@@ -10,14 +10,16 @@ import * as todo from './todo';
 import * as auth from './user';
 import User from '../models/user';
 
+import React from 'react';
+import Router from 'react-router';
+import routes from '../../shared/routes';
+import alt from '../../shared/alt';
+import Iso from 'iso';
+import bootstrap from './bootstrap';
+
 const jwtConfig = config.get('jwt');
 
 export default (app) => {
-
-  // Create frontend route
-  app.get('/', (req, res) => {
-    res.render('index');
-  });
 
   // Create api router
   let router = express.Router();
@@ -40,9 +42,46 @@ export default (app) => {
 
   // Use api router
   app.use('/api', router);
+
+  // Create frontend route
+  app.get('/*', bootstrap, (req, res) => {
+    // Create iso instance
+    let iso = new Iso();
+
+    // Bootstrap alt
+    alt.bootstrap(JSON.stringify(res.locals));
+
+    // Create router
+    let router = Router.create({
+      // Add routes
+      routes,
+      // Provide current URL
+      location: req.url,
+      // Handle client side transitions -> redirect
+      onAbort: function(options) {
+        res.redirect(options.to);
+      }
+    });
+
+    // Run router
+    router.run((Handler, state) => {
+      // Render page
+      let content = React.renderToString(<Handler />);
+
+      // Load iso with bootstrapped data
+      iso.add(content, alt.flush());
+
+      // Render view
+      res.render('index', { content: iso.render() });
+    });
+  });
 };
 
+/**
+ * Translates jwt req.user to mongoose user
+ */
 function loadUser(req, res, next) {
+  if (!req.user) return next();
   User.findById(req.user._id, (err, user) => {
     if (user) req.user = user;
     next();

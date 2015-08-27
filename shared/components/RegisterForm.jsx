@@ -1,5 +1,5 @@
 /**
- * client/js/components/RegisterForm.jsx
+ * shared/components/RegisterForm.jsx
  * Register form component
  */
 

@@ -1,5 +1,5 @@
 /**
- * client/js/util/BaseComponent.jsx
+ * shared/util/BaseComponent.jsx
  * Base react component class
  */
 

@@ -1,5 +1,5 @@
 /**
- * client/js/stores/AuthStore.js
+ * shared/stores/AuthStore.js
  * Store for user state
  */
 
@@ -13,7 +13,10 @@ class AuthStore {
     this.user = null;
     this.bindActions(AuthActions);
 
-    this._autoLogin();
+    // Parse token on bootstrap
+    this.on('bootstrap', () => {
+      if (this.token) this._handleToken(this.token);
+    });
   }
 
   /**
@@ -29,7 +32,6 @@ class AuthStore {
   logoutSuccess() {
     this.user = null;
     this.token = null;
-    localStorage.setItem('token', '');
   }
 
   /**
@@ -46,18 +48,7 @@ class AuthStore {
     // Capture state
     this.token = token;
     this.user = jwtDecode(this.token);
-
-    // Store data
-    localStorage.setItem('token', this.token);
-  }
-
-  /**
-   * Load state from localStorage
-   */
-  _autoLogin() {
-    let token = localStorage.getItem('token');
-    if (token) this._handleToken(token);
   }
 }
 
-export default alt.createStore(AuthStore);
+export default alt.createStore(AuthStore, 'AuthStore');

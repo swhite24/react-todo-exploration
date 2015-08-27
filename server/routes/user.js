@@ -20,7 +20,7 @@ export function register(req, res) {
     if (err) return res.status(409).send(err);
 
     let token = getToken(user);
-    req.session.token = token;
+    req.session.token = token.token;
     res.status(200).send(token);
   });
 }
@@ -41,8 +41,8 @@ export function login(req, res) {
       if (!valid) return res.status(404).send({ message: 'User not found' });
 
       let token = getToken(user);
-      req.session.token = token;
-      res.status(200).send(getToken(user));
+      req.session.token = token.token;
+      res.status(200).send(token);
     });
   });
 }
@@ -61,9 +61,5 @@ export function logout(req, res) {
 function getToken(user) {
   let token = jwt.sign(user, jwtConfig.secret, { expiresInMinutes: jwtConfig.exp });
 
-  return {
-    token,
-    user,
-    expires: Date.now() + jwtConfig.exp * 60 * 1000
-  };
+  return { token };
 }
