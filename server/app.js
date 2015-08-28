@@ -5,6 +5,7 @@
 
 import express from 'express';
 import http from 'http';
+import config from 'config';
 
 import settings from './boot/settings';
 import db from './boot/db';
@@ -21,6 +22,7 @@ db();
 routes(app);
 
 // Create / start server
-http.createServer(app).listen(3000, () => {
-  console.log('server listening on:', 3000);
+const port = process.env.PORT || config.get('port');
+http.createServer(app).listen(port, () => {
+  console.log('server listening on:', port);
 });

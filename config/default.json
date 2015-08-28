@@ -9,5 +9,7 @@
   "session": {
     "secret": "3107368cc8abc0bea711ccebbf3aa50c127793d7",
     "exp": 8.64e7
-  }
+  },
+  "port": 3000,
+  "webpack-port": 3001
 }

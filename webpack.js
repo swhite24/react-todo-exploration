@@ -5,16 +5,18 @@
 
 var WebpackDevServer = require('webpack-dev-server');
 var webpack = require('webpack');
-var config = require('./webpack.dev-config');
+var webpackConf = require('./webpack.dev-config');
+var config = require('config');
+var port = config.get('webpack-port');
 
-var server = new WebpackDevServer(webpack(config), {
-  publicPath: config.output.publicPath,
+var server = new WebpackDevServer(webpack(webpackConf), {
+  publicPath: webpackConf.output.publicPath,
   hot: true,
   stats: {
     colors: true
   }
 });
 
-server.listen(3001, 'localhost', function() {
-  console.log('WebpackDevServer listening on: ', 3001);
+server.listen(port, 'localhost', function() {
+  console.log('WebpackDevServer listening on: ', port);
 });
