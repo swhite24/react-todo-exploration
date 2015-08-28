@@ -1,5 +1,5 @@
 {
   "db": {
-    "connect": "mongodb://localhost/react-todo"
+    "name": "react-todo"
   }
 }

@@ -8,6 +8,8 @@ import config from 'config';
 
 export default function() {
   let dbConfig = config.get('db');
+  let port = process.env.MONGO_PORT || 27017;
+  let db = dbConfig.name;
 
-  mongoose.connect(dbConfig.connect);
+  mongoose.connect(`mongodb://localhost:${port}/${db}`);
 }
