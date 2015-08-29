@@ -24,7 +24,7 @@ export default class TodoForm extends BaseComponent {
    * Handle input value change by updating state.
    */
   _onChange(evnt) {
-    this.setState({ content: evnt.target.value });
+    this.setState({ content: this.refs.input.value });
   }
 
   /**
@@ -53,6 +53,7 @@ export default class TodoForm extends BaseComponent {
             value={this.state.content}
             onChange={this._onChange}
             onKeyDown={this._onKeyDown}
+            ref='input'
             />
           <label>New Todo</label>
         </div>
