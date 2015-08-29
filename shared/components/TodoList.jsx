@@ -29,5 +29,5 @@ export default class TodoList extends BaseComponent {
 
 // Define required props
 TodoList.propTypes = {
-  props: React.PropTypes.array.isRequired
+  todos: React.PropTypes.array.isRequired
 };
