@@ -1,0 +1,4 @@
+--require test/util/setup.js
+--require test/util/dom.js
+--compilers js:babel/register,jsx:babel/register
+--reporter spec

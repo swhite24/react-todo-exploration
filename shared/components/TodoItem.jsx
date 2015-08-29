@@ -36,7 +36,7 @@ export default class TodoItem extends BaseComponent {
       <li key={todo._id} className='collection-item todo'>
         <div className='row'>
           <div className='col s9'>
-            <input type='checkbox' id={todo._id} onChange={this._onToggle} checked={this.props.todo.complete}/>
+            <input type='checkbox' id={todo._id} onChange={this._onToggle} checked={todo.complete}/>
             <label htmlFor={todo._id}>{todo.content}</label>
 
           </div>

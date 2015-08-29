@@ -13,7 +13,10 @@
     "es6": true,
     "browser": true,
     "node": true,
-    "mocha": true
+    "mocha": true,
+  },
+  "globals": {
+    "expect": true
   },
   "extends": "eslint:recommended",
   "ecmaFeatures": {
