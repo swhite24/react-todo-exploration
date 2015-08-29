@@ -5,48 +5,16 @@
 
 import React from 'react';
 import BaseComponent from '../util/BaseComponent';
-import TodoStore from '../stores/TodoStore';
-import TodoActions from '../actions/TodoActions';
 import TodoItem from './TodoItem';
 
 export default class TodoList extends BaseComponent {
 
-  constructor(props) {
-    super(props);
-    this.state = TodoStore.getState();
-
-    // Bind callback methods
-    this._bind('_onChange');
-  }
-
-  /**
-   * Bootstrap data if not present
-   */
-  componentDidMount() {
-    TodoStore.listen(this._onChange);
-    if (!this.state.todos.length) TodoActions.fetchTodos();
-  }
-
-  /**
-   * Remove listener for store change
-   */
-  componentWillUnmount() {
-    TodoStore.unlisten(this._onChange);
-  }
-
-  /**
-   * Update date on store change
-   */
-  _onChange(state) {
-    this.setState(state);
-  }
-
   render() {
     // Check if items available
-    if (!this.state.todos.length) return <div></div>;
+    if (!this.props.todos.length) return <div></div>;
 
     // Build todo items
-    let items = this.state.todos.map((todo) => {
+    let items = this.props.todos.map((todo) => {
       return <TodoItem key={todo._id} todo={todo} />;
     });
 
@@ -58,3 +26,8 @@ export default class TodoList extends BaseComponent {
   }
 
 }
+
+// Define required props
+TodoList.propTypes = {
+  props: React.PropTypes.array.isRequired
+};
