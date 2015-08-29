@@ -8,7 +8,18 @@ Using [webpack](http://webpack.github.io/) as a build system, with hot reloading
 
 ```shell
 $ npm install
+```
+
+## Development
+
+```shell
 $ npm run start-dev
+```
+
+## Tests
+
+```shell
+npm test
 ```
 
 ## Production-like

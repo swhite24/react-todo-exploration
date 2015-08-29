@@ -64,15 +64,15 @@ export default class Header extends BaseComponent {
     if (this.state.user) {
       return (
         <ul className='right'>
-          <li><Link to='profile'>Profile</Link></li>
-          <li><a href='javascript:void(0)' onClick={this._logout}>Logout</a></li>
+          <li><Link to='profile' ref='profile'>Profile</Link></li>
+          <li><a href='javascript:void(0)' ref='logout' onClick={this._logout}>Logout</a></li>
         </ul>
       );
     } else {
       return (
         <ul className='right'>
-          <li><Link to='login'>Login</Link></li>
-          <li><Link to='register'>Register</Link></li>
+          <li><Link to='login' ref='login'>Login</Link></li>
+          <li><Link to='register' ref='register'>Register</Link></li>
         </ul>
       );
     }
