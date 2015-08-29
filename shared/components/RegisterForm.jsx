@@ -37,6 +37,7 @@ export default class RegisterForm extends BaseComponent {
             <input
               type='text'
               name='firstName'
+              ref='firstName'
               valueLink={this.linkState('firstName')}
               />
             <label>First Name</label>
@@ -45,6 +46,7 @@ export default class RegisterForm extends BaseComponent {
             <input
               type='text'
               name='lastName'
+              ref='lastName'
               valueLink={this.linkState('lastName')}
               />
             <label>Last Name</label>
@@ -55,6 +57,7 @@ export default class RegisterForm extends BaseComponent {
             <input
               type='email'
               name='email'
+              ref='email'
               valueLink={this.linkState('email')}
               />
             <label>Email Address</label>
@@ -65,13 +68,14 @@ export default class RegisterForm extends BaseComponent {
             <input
               type='password'
               name='password'
+              ref='password'
               valueLink={this.linkState('password')}
               />
             <label>Password</label>
           </div>
         </div>
         <div className='row'>
-          <button type='submit' className='btn waves-effect right' onClick={this._onSubmit}>Submit</button>
+          <button type='submit' ref='submit' className='btn waves-effect right' onClick={this._onSubmit}>Submit</button>
         </div>
       </form>
     );

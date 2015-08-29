@@ -32,6 +32,7 @@ export default class LoginForm extends BaseComponent {
           <div className='input-field col s12'>
             <input
               type='email'
+              ref='email'
               required
               valueLink={this.linkState('email')}
               />
@@ -42,6 +43,7 @@ export default class LoginForm extends BaseComponent {
           <div className='input-field col s12'>
             <input
               type='password'
+              ref='password'
               required
               valueLink={this.linkState('password')}
               />
@@ -49,10 +51,22 @@ export default class LoginForm extends BaseComponent {
           </div>
         </div>
         <div className='row'>
-          <button type='submit' className='btn waves-effect right' onClick={this._onSubmit}>Submit</button>
+          <button
+            type='submit'
+            ref='submit'
+            className='btn waves-effect right'
+            disabled={this._invalid()}
+            onClick={this._onSubmit}>Submit</button>
         </div>
       </form>
     );
+  }
+
+  /**
+   * Form state
+   */
+  _invalid() {
+    return !this.state.email || !this.state.password;
   }
 }
 

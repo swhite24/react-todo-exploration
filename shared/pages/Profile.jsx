@@ -28,17 +28,17 @@ export default class Profile extends BaseComponent {
               <div className='row'>
                 <div className='col m6'>
                   <h4 className='thin'>Name</h4>
-                  <p>{this.state.user.firstName} {this.state.user.lastName}</p>
+                  <p ref='name'>{this.state.user.firstName} {this.state.user.lastName}</p>
                 </div>
                 <div className='col m6'>
                   <h4 className='thin'>Email</h4>
-                  <p>{this.state.user.email}</p>
+                  <p ref='email'>{this.state.user.email}</p>
                 </div>
               </div>
               <div className='row'>
                 <div className='col m6'>
                   <h4 className='thin'>Number of Todos</h4>
-                  <p>{this.state.todos.length}</p>
+                  <p ref='todos'>{this.state.todos.length}</p>
                 </div>
               </div>
             </div>

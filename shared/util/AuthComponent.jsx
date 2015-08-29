@@ -50,6 +50,7 @@ export default (Component) => {
           {...this.props}
           user={this.state.user}
           token={this.state.token}
+          ref='component'
           />
       );
     }
