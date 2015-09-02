@@ -24,7 +24,7 @@ export default class TodoForm extends BaseComponent {
    * Handle input value change by updating state.
    */
   _onChange(evnt) {
-    this.setState({ content: this.refs['input'].value });
+    this.setState({ content: this.refs['input'].getDOMNode().value });
   }
 
   /**
